@@ -6,24 +6,30 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
-const (  
-    username = "root"
-    password = "iamnot19"
-    hostname = "127.0.0.1:3306"
-    dbname   = "books"
-)
+func dsn() string {  
+	err := godotenv.Load()
+    if err != nil {
+        fmt.Println("Error loading .env file")
+    }
 
-func dsn(dbName string) string {  
+	username := os.Getenv("DB_USERNAME")
+	password := os.Getenv("DB_PASSWORD")
+	hostname := os.Getenv("DB_HOST")
+	dbName   := os.Getenv("DB_NAME")
+
+
     return fmt.Sprintf("%s:%s@tcp(%s)/%s", username, password, hostname, dbName)
 }
 
 func Connection() (*sql.DB, error) {  
-	db, err := sql.Open("mysql", dsn(dbname))  
+	db, err := sql.Open("mysql", dsn())  
 	if err != nil {  
 		log.Printf("Error: %s when opening DB", err)
 		return nil, err
@@ -40,7 +46,7 @@ func Connection() (*sql.DB, error) {
         log.Printf("Errors %s pinging DB", err)
         return nil, err
     }
-    log.Printf("Connected to DB %s successfully\n", dbname)
+    log.Printf("Connected to DB successfully\n")
 	return db, err
 }
 

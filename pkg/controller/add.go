@@ -6,12 +6,8 @@ import (
 	"net/http"
 )
 
-type AddBody struct {
-	Name string `json:"name"`
-}
-
 func Add(writer http.ResponseWriter, request *http.Request) {
-	var body AddBody
+	var body Book
 	err := json.NewDecoder(request.Body).Decode(&body)
 	if err != nil {
 		fmt.Print("There was an error decoding the request body into the struct")

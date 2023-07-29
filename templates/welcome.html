@@ -9,19 +9,22 @@
   <div style="text-align: center; margin-top: 100px;">
     Welcome to the MVC Lecture
     <br />
-    <button id="loginButton" onclick="redirectToLogin()">Login</button>
-    <button id="registerButton" onclick="redirectToRegister()">Register</button>
+    <label for="name">Enter book name:</label>
+    <input type="text" id="name" required>
+  <br>
+
+  <button onclick="submitForm()">Submit</button>
   </div>
 
   <script>
-    function redirectToLogin() {
-      // Replace 'login.html' with the actual URL of your login page.
-      window.location.href = 'login.html';
-    }
+    function submitForm() {
+      const name = document.getElementById('name').value;
 
-    function redirectToRegister() {
-      // Replace 'register.html' with the actual URL of your register page.
-      window.location.href = 'register.html';
+      const data = {
+        name: name
+      }
+
+      document.getElementById('name').value = '';
     }
   </script>
 </body>

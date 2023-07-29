@@ -7,7 +7,6 @@ import (
 )
 
 func Welcome(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
 	t := views.StartPage()
 	t.Execute(writer, nil)
 }

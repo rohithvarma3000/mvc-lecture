@@ -14,6 +14,7 @@ func FetchBooks() types.ListBooks {
 	}
 	selectSql := "SELECT * FROM books_list"
 	rows, err := db.Query(selectSql)
+	db.Close()
 
 	if err != nil {
 		fmt.Printf("error %s querying the database", err)
@@ -22,7 +23,6 @@ func FetchBooks() types.ListBooks {
 
 	var fetchBooks []types.Book
 	for rows.Next() {
-		fmt.Println("inside for loop")
 		var book types.Book
 		err := rows.Scan(&book.Name)
 		if err != nil {

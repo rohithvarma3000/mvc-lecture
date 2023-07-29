@@ -24,7 +24,24 @@
         name: name
       }
 
-      document.getElementById('name').value = '';
+      fetch('/add', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('API request successful!');
+          window.location.href = '/list'; 
+        } else {
+          console.log('API request failed!');
+        }
+      })
+      .catch(error => {
+        console.error('Error occurred:', error);
+      });
     }
   </script>
 </body>

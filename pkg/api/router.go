@@ -11,10 +11,7 @@ func Start() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", controller.Welcome).Methods("GET")
 	r.HandleFunc("/add", controller.Add).Methods("POST")
+	r.HandleFunc("/list", controller.List).Methods("GET")
 
 	http.ListenAndServe(":8000", r)
 }
-
-// func ping(writer http.ResponseWriter, request *http.Request) {
-// 	writer.WriteHeader(http.StatusOK)
-// }

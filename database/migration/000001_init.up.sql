@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS books_list (
+    name VARCHAR(255) NOT NULL
+);

@@ -20,7 +20,8 @@
 - Hosting
 1. Install apache2: `sudo apt install apache2`
 2. `sudo a2enmod proxy proxy_http`
-3. `sudo nano mvc.sdslabs.local.conf`
+3. `cd /etc/apache2/sites-available`
+4. `sudo nano mvc.sdslabs.local.conf`
 Add: 
 ```
 <VirtualHost *:80>
@@ -33,10 +34,11 @@ Add:
 	ErrorLog /var/log/apache2/mvc_error.log
 </VirtualHost>
 ```
-4. `sudo a2ensite mvc.sdslabs.local.conf`
-5. `sudo a2dissite 000-default.conf`
-6. `sudo apache2ctl configtest `
-7. `sudo systemctl restart apache2`
-8. `sudo systemctl status apache2`
-9. Check mvc.sdslabs.local on your browser
+5. `sudo a2ensite mvc.sdslabs.local.conf`
+6. add `127.0.0.1	mvc.sdslabs.local` to `/etc/hosts`
+7. `sudo a2dissite 000-default.conf`
+8. `sudo apache2ctl configtest `
+9. `sudo systemctl restart apache2`
+10. `sudo systemctl status apache2`
+11. Check mvc.sdslabs.local on your browser
 
